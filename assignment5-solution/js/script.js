@@ -99,12 +99,9 @@ function buildAndShowHomeHTML (categories) {
     function (homeHtml) {
 
       var chosenCategoryShortName = chooseRandomCategory (categories).short_name;
-
-      var html = categoryHtml;
-
-
-
-      var homeHtmlToInsertIntoMainPage = insertProperty(html, "randomCategoryShortName", "{{" + chosenCategoryShortName + "}}");
+          chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
+      
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
 
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
@@ -130,6 +127,8 @@ function buildAndShowHomeHTML (categories) {
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that.
       // ....
+
+      insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
